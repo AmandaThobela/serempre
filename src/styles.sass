@@ -1,0 +1,52 @@
+/* You can add global styles to this file, and also import other style files */
+@font-face
+    font-family: Circular
+    src: url('/assets/fonts/CircularStd-Bold.woff2') format('woff2'),url('/assets/fonts/CircularStd-Bold.woff') format('woff'),url('/assets/fonts/CircularStd-Bold.ttf') format('truetype')
+    font-weight: bold
+    font-style: normal
+    font-display: swap
+
+@font-face
+    font-family: Circular
+    src: url('/assets/fonts/CircularStd-Medium.woff2') format('woff2'),url('/assets/fonts/CircularStd-Medium.woff') format('woff'),url('/assets/fonts/CircularStd-Medium.ttf') format('truetype')
+    font-weight: 500
+    font-style: normal
+    font-display: swap
+
+@font-face
+    font-family: Circular
+    src: url('/assets/fonts/CircularStd-Book.woff2') format('woff2'),url('/assets/fonts/CircularStd-Book.woff') format('woff'),url('/assets/fonts/CircularStd-Book.ttf') format('truetype')
+    font-weight: normal
+    font-style: normal
+    font-display: swap
+
+@import 'sass/variables'
+
+html
+    font-family: Circular
+    font-weight: normal
+    font-size: 14px
+    color: #333
+    box-sizing: border-box
+    -webkit-font-smoothing: antialiased
+    -moz-osx-font-smoothing: grayscale
+    body
+        margin: 0
+
+        *
+            box-sizing: border-box
+
+        h1
+            font-size: 40px
+            line-height: 48px
+            font-weight: bold
+
+        h2
+            font-size: 28px
+            line-height: 32px
+            font-weight: normal
+            color: $color-text-gray
+
+        img
+            width: 100%
+            height: auto

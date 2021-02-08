@@ -1,0 +1,54 @@
+@import "../../sass/variables"
+
+footer
+    border-top: 1px solid $color-border
+    background-color: #f5f5f7
+    height: 152px
+
+.content
+    max-width: 1200px
+    margin: 0 auto
+    display: flex
+    align-items: center
+    height: 100%
+
+    .shipping, .warranty
+        flex-basis: 25%
+
+        .title
+            margin-bottom: 12px
+
+        .desc
+            color: $color-text-gray
+
+    .final-price
+        flex-basis: 50%
+
+        display: flex
+        align-items: center
+        justify-content: flex-end
+
+        .text
+            text-align: right
+
+            .price
+                font-size: 28px
+                line-height: 32px
+                font-weight: bold
+
+            .subtext
+                font-size: 14px
+                line-height: 20px
+                color: $color-text-gray
+
+        .primary-button
+            margin-left: 32px
+            font-size: 16px
+            line-height: 24px
+            width: 113px
+            height: 56px
+            border-radius: 8px
+            border: none
+            background-color: #1e96d4
+            color: white
+            font-weight: bold

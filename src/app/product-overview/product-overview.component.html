@@ -1,0 +1,36 @@
+<div class="product-overview">
+    <div class="product-tag">{{ productTag }}</div>
+    <h1 class="product-title">{{ productTitle }}</h1>
+    <h2 class="product-subtitle">{{ productQuote }}</h2>
+
+    <div class="product-price">
+        <div class="product-price-label">{{ productPriceLabel }}</div>
+        <div class="product-price-tag">{{ productPriceCurrency }} {{ productPrice }}</div>
+    </div>
+
+    <div class="product-tabs">
+        <div class="product-tabs-titles" *ngFor="let tab of productTabs; let i = index" (click)=selectTab(i) [ngClass]="{'active': i === activeTab}">
+            {{ tab.tabTitle }}
+        </div>
+        <div class="product-tabs-content" *ngFor="let tab of productTabs; let i = index" [ngClass]="{'active': i === activeTab}">
+            {{ tab.tabContent }}
+        </div>
+    </div>
+
+    <div class="product-options">
+        <div class="category" *ngFor="let category of productOptions">
+            <h4>{{ category.label }}</h4>
+            <div class="layout" [ngClass]="category.layout">
+                <div class="option" *ngFor="let option of category.options">
+                    <div class="text">
+                        <div class="option-title">{{ option.title }}</div>
+                        <div class="option-desc">{{ option.desc }}</div>
+                    </div>
+                    <div class="added-price" *ngIf="option.addedCost !== undefined">
+                        + {{ productPriceCurrency }}{{ option.addedCost }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

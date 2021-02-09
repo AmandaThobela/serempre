@@ -1,4 +1,8 @@
+@use "sass:map"
 @import "../../sass/variables"
+
+.product-gallery
+    margin-bottom: 50px
 
 .main-image
     width: 100%
@@ -7,15 +11,22 @@
     margin-bottom: 20px
     height: 336px
     text-align: center
+    display: flex
+    justify-content: center
+    align-items: center
 
     img
         width: auto
-        height: 100%
+        height: auto
+        max-width: 100%
+        max-height: 100%
 
 .slider
     display: flex
     .image-slide
-        display: inline-block
+        display: inline-flex
+        justify-content: center
+        align-items: center
         flex-basis: 30%
         flex-grow: 0
         flex-shrink: 0
@@ -24,10 +35,22 @@
         margin-right: 16px
         text-align: center
         height: 100px
+        max-height: 44px
+
+        @include hover-states
+
+        @media screen and (min-width: map.get($breakpoints, "tablet"))
+            max-height: 100px
 
         &.active
             border: 2px solid $color-text-black
 
         img
-            height: 100%
             width: auto
+            height: auto
+            max-width: 100%
+            max-height: 100%
+
+        @media screen and (min-width: map.get($breakpoints, "tablet"))
+            img
+                max-height: 100px

@@ -1,11 +1,17 @@
 import { Injectable } from '@angular/core';
 
+import {BehaviorSubject} from "rxjs";
+
 @Injectable({
   providedIn: 'root'
 })
 export class ProductConfiguratorService {
   productPrice: number;
   configOptions: Array<Object>;
+
+  private _priceSubj: BehaviorSubject<number> = new BehaviorSubject(0);
+
+  $price = this._priceSubj.asObservable();
 
   constructor() {
     this.configOptions = [
@@ -62,20 +68,29 @@ export class ProductConfiguratorService {
     return this.configOptions;
   }
 
-  selectOption(category, option) {
-    this.configOptions[category]["options"][option].selected = true
+  selectOption(option, category) {
+    for (let opt in this.configOptions[category]["options"]) {
+      this.configOptions[category]["options"][opt].selected = false;
+    }
+
+    this.configOptions[category]["options"][option]["selected"] = true;
+  }
+
+  setPrice(initialPrice) {
+    this.productPrice = initialPrice;
+    this._priceSubj.next(initialPrice);
   }
 
   calculateFinalPrice() {
     let addedCost = 0;
     for(let category in this.configOptions) {
-      // console.log('cate', this.configOptions[category]);
       for(let option of this.configOptions[category]["options"]) {
-        if(option.addedCost) {
-          addedCost + option.addedCost
+        if(option.addedCost && option.selected) {
+          addedCost += option.addedCost
         }
       }
     }
-    return this.productPrice;
+
+    this._priceSubj.next(this.productPrice + addedCost);
   }
 }

@@ -27,8 +27,8 @@ $breakpoints: (phone: 640px, tablet: 768px, desktop: 1024px) !default
     &:hover
         border: 2px solid $color-border-hover
 
-    &.active
+    &.selected
         border: 2px solid $color-border-selected
 
-    &:focus
-        outline: 2px solid $color-border-focus
+    &:focus, &:focus-visible
+        box-shadow: 0 0 0 2px $color-border-focus

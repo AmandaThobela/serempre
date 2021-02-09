@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductConfiguratorService } from '../product-configurator.service';
+import { Subscription } from "rxjs";
 
 @Component({
   selector: 'app-product-overview',
@@ -7,6 +8,7 @@ import { ProductConfiguratorService } from '../product-configurator.service';
   styleUrls: ['./product-overview.component.sass']
 })
 export class ProductOverviewComponent implements OnInit {
+  private priceSubscription: Subscription;
 
   productTitle: string;
   productTag: string;
@@ -43,13 +45,31 @@ export class ProductOverviewComponent implements OnInit {
       tabContent: 'the box'
     }]
 
+    this.configurator.setPrice(this.productPrice)
+
     this.productOptions = this.configurator.getOptions();
 
-    this.configurator.calculateFinalPrice();
+    // Enable this code to set the product price dynamically
+    // this.priceSubscription = this.configurator.$price.subscribe((price: number) => {
+    //   this.productPrice = price
+    // })
+  }
+
+  onKeyDown(event, callback) {
+    if (event.key === "Enter") {
+      callback()
+    } else {
+      return;
+    }
   }
 
   selectTab(index) {
     this.activeTab = index;
+  }
+
+  selectOption(index, category) {
+    this.configurator.selectOption(index, category);
+    this.configurator.calculateFinalPrice();
   }
 
 }

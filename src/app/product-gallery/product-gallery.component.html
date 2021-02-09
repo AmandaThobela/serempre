@@ -3,7 +3,7 @@
         <img src="{{ selectedImage }}" />
     </div>
     <div class="slider">
-        <div class="image-slide" *ngFor="let slide of sliderImages; let i = index" (click)=changeImage(i) [ngClass]="{'active': i === indexOfSelected}">
+        <div class="image-slide" *ngFor="let slide of sliderImages; let i = index" (click)=changeImage(i) (keydown)="onKeyDown($event, changeImage(i))" [ngClass]="{'active': i === indexOfSelected}" tabindex="0">
             <img src="{{ slide.url }}" />
         </div>
     </div>

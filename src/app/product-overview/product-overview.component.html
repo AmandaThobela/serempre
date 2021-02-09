@@ -9,7 +9,7 @@
     </div>
 
     <div class="product-tabs">
-        <div class="product-tabs-titles" *ngFor="let tab of productTabs; let i = index" (click)=selectTab(i) [ngClass]="{'active': i === activeTab}">
+        <div class="product-tabs-titles" *ngFor="let tab of productTabs; let i = index" (click)=selectTab(i) (keydown)="onKeyDown($event, selectTab(i))" [ngClass]="{'active': i === activeTab}" tabindex="0">
             {{ tab.tabTitle }}
         </div>
         <div class="product-tabs-content" *ngFor="let tab of productTabs; let i = index" [ngClass]="{'active': i === activeTab}">
@@ -17,11 +17,13 @@
         </div>
     </div>
 
+    <app-product-features></app-product-features>
+
     <div class="product-options">
-        <div class="category" *ngFor="let category of productOptions">
+        <div class="category" *ngFor="let category of productOptions; let catIndex = index">
             <h4>{{ category.label }}</h4>
             <div class="layout" [ngClass]="category.layout">
-                <div class="option" *ngFor="let option of category.options">
+                <div class="option" *ngFor="let option of category.options; let i = index" (click)="selectOption(i, catIndex)" (keydown)="onKeyDown($event, selectOption(i, catIndex))" [ngClass]="{'selected': option.selected === true}" tabindex="0">
                     <div class="text">
                         <div class="option-title">{{ option.title }}</div>
                         <div class="option-desc">{{ option.desc }}</div>
@@ -30,6 +32,60 @@
                         + {{ productPriceCurrency }}{{ option.addedCost }}
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="product-spec">
+        <div class="row">
+            <h4>Specifications.</h4>
+        </div>
+        <div class="row">
+            <div class="label">
+                Dimensions
+            </div>
+            <div class="desc">
+                76.8 x 43.8 x 34.7 mm (earbuds and charging case)
+            </div>
+        </div>
+        <div class="row">
+            <div class="label">
+                USB Standard
+            </div>
+            <div class="desc">
+                USB-C
+            </div>
+        </div>
+        <div class="row">
+            <div class="label">
+                Power supply
+            </div>
+            <div class="desc">
+                Sennheiser 7mm dynamic driver
+            </div>
+        </div>
+        <div class="row">
+            <div class="label">
+                Frequency response (Microphone)
+            </div>
+            <div class="desc">
+                100 Hz to 10 kHz
+            </div>
+        </div>
+        <div class="row">
+            <div class="label">
+                Frequency response (Microphone)
+            </div>
+            <div class="desc">
+                5 - 21,000 Hz
+            </div>
+        </div>
+        <div class="row">
+            <div class="label">
+                Noise cancellation
+            </div>
+            <div class="desc">
+                Single-Mic ANC per earbud side
             </div>
         </div>
     </div>

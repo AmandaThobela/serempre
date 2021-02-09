@@ -30,6 +30,14 @@ export class ProductGalleryComponent implements OnInit {
     this.changeImage(0);
   }
 
+  onKeyDown(event, callback) {
+    if (event.key === "Enter") {
+      callback()
+    } else {
+      return;
+    }
+  }
+
   changeImage(index) {
     this.indexOfSelected = index;
     this.selectedImage = this.sliderImages[index].fullImage;

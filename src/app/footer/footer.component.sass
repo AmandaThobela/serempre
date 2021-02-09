@@ -1,3 +1,4 @@
+@use "sass:map"
 @import "../../sass/variables"
 
 footer
@@ -11,9 +12,15 @@ footer
     display: flex
     align-items: center
     height: 100%
+    padding: 0 24px
 
     .shipping, .warranty
         flex-basis: 25%
+        display: none
+        padding-right: 10px
+
+        @media screen and (min-width: map.get($breakpoints, "tablet"))
+            display: block
 
         .title
             margin-bottom: 12px
@@ -22,7 +29,7 @@ footer
             color: $color-text-gray
 
     .final-price
-        flex-basis: 50%
+        flex-grow: 1
 
         display: flex
         align-items: center
@@ -52,3 +59,9 @@ footer
             background-color: #1e96d4
             color: white
             font-weight: bold
+
+            &:hover
+                background-color: #66beeb
+
+            &:focus, &:focus-visible
+                box-shadow: 0 0 0 2px $color-border-focus
